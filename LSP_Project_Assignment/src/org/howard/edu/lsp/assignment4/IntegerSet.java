@@ -3,48 +3,58 @@ package org.howard.edu.lsp.assignment4;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a set of integers and provides various set operations.
+ */
 public class IntegerSet {
     private List<Integer> set = new ArrayList<Integer>();
    
     /**
-     * Default Constructor of the IntegerSet class
+     * Default Constructor of the IntegerSet class.
      */
     public IntegerSet() {
         }
 
     /**
-     * Constructor if you want to pass in already initialized
-     * @param set
+     * Constructor to initialize the set with existing values.
+     * 
+     * @param set the set of integers
      */
     public IntegerSet(ArrayList<Integer> set) {
         this.set = set;
     }
    
     /**
-     * This method add an integer to the Integer Set if it is already not in it
-     * @param item
+     * Adds an integer to the set if it is not already present.
+     * 
+     * @param item the integer to be added
      */
     public void add(int item) {
         if (!set.contains(item) ) {
             set.add(item);
         }
     }
+    
     /**
-     * A void class which clears out the Integer set
+     * Clears the Integer set.
      */
     public void clear() {
         set.clear();
     }
+    
     /**
-     * This method return the string representation of the Integer set
-     * @return String
+     * Returns the string representation of the Integer set.
+     * 
+     * @return String representation of the set
      */
     public String toString() {
         return set.toString();
     }
+    
     /**
-     * This method removes an item from the set if the item exists
-     * @param item
+     * Removes an item from the set if it exists.
+     * 
+     * @param item the item to be removed
      */
     public void remove(int item) {
         if (set.contains(item) ) {
@@ -52,8 +62,12 @@ public class IntegerSet {
         }
        
     }
+    
     /**
-     * This method returns true if the two sets are equal
+     * Checks if the set is equal to another object.
+     * 
+     * @param o the object to compare
+     * @return true if the sets are equal, false otherwise
      */
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,32 +77,40 @@ public class IntegerSet {
 
         return set.containsAll(that.set) && that.set.containsAll(set);
     }
+    
     /**
-     * This method returns the size of a set 
-     * @return length of the set
+     * Returns the size of the set.
+     * 
+     * @return the size of the set
      */
     public int length() {
         return set.size();
     }
+    
     /**
-     * This method returns true if the set is empty or false otherwise
-     * @return boolean
+     * Checks if the set is empty.
+     * 
+     * @return true if the set is empty, false otherwise
      */
     public boolean isEmpty() {
         return set.isEmpty();
     }
+    
     /**
-     * This method returns true if the set contains the value or false otherwise
-     * @param value
-     * @return boolean
+     * Checks if the set contains a value.
+     * 
+     * @param value the value to check
+     * @return true if the set contains the value, false otherwise
      */
     public boolean contains(int value) {
         return set.contains(value);
     }
+    
     /**
-     *This method returns the maximum value in a set
-     * @return maximum element
-     * @throws IntegerSetException
+     * Finds the largest value in the set.
+     * 
+     * @return the largest value in the set
+     * @throws IntegerSetException if the set is empty
      */
     public int largest() throws IntegerSetException {
         if (isEmpty()) {
@@ -102,11 +124,11 @@ public class IntegerSet {
     }
     
     /**
-     *This method returns the minimum value in a set
-     * @return maximum element
-     * @throws IntegerSetException
+     * Finds the smallest value in the set.
+     * 
+     * @return the smallest value in the set
+     * @throws IntegerSetException if the set is empty
      */
-   
     public int smallest() throws IntegerSetException {
         if (isEmpty()) {
             throw new IntegerSetException("Set is empty");
@@ -117,9 +139,11 @@ public class IntegerSet {
         }
         return min;
     }
+    
     /**
-     * This method does the union operation on two or more sets
-     * @param intSetb
+     * Computes the union of this set and another set.
+     * 
+     * @param intSetb the other set
      */
     public void union(IntegerSet intSetb) {
         for (int value : intSetb.set) {
@@ -130,36 +154,42 @@ public class IntegerSet {
     }
 
     /**
-     * This method does the intersection operation on two or more sets
-     * @param intSetb
+     * Computes the intersection of this set and another set.
+     * 
+     * @param intSetb the other set
      */
     public void intersect(IntegerSet intSetb) {
         set.retainAll(intSetb.set);
     }
+    
     /**
-     * This method does the difference operation on two or more sets
-     * @param intSetb
+     * Computes the difference between this set and another set.
+     * 
+     * @param intSetb the other set
      */
     public void diff(IntegerSet intSetb) {
         set.removeAll(intSetb.set);
     }
+    
     /**
-     * This method finds the complement when given an universal set
-     * @param Universal set
+     * Computes the complement of this set with respect to another set.
+     * 
+     * @param intSetb the universal set
      */
-    public void complement(IntegerSet universalSet) {
+    public void complement(IntegerSet intSetb) {
         List<Integer> complement = new ArrayList<>();
-        for (int i : universalSet.set) {
+        for (int i : intSetb.set) {
             if (!set.contains(i)) {
                 complement.add(i);
             }
         }
         set = complement;
     }
-
-
 }
 
+/**
+ * Custom Exception class for IntegerSet.
+ */
 class IntegerSetException extends Exception {
     public IntegerSetException(String message) {
         super(message);
