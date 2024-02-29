@@ -13,7 +13,7 @@ public class IntegerSet {
      * Default Constructor of the IntegerSet class.
      */
     public IntegerSet() {
-        }
+        } 
 
     /**
      * Constructor to initialize the set with existing values.
