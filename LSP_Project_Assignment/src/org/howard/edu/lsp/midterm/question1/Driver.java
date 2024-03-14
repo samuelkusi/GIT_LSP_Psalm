@@ -1,5 +1,5 @@
 package org.howard.edu.lsp.midterm.question1;
 
-public class Question1 {
+public class Driver {
 
 }
